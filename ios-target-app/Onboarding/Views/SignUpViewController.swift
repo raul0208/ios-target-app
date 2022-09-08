@@ -11,11 +11,9 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet weak var genderTextField: UITextField!
     
-    @IBOutlet weak var ovalsGroup: UIImageView!
+    private let genders = ["Female", "Male", "Not defined"]
     
-    let genders = ["Female", "Male", "Not defined"]
-    
-    var genderPickerView = UIPickerView()
+    private var genderPickerView = UIPickerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,20 +22,7 @@ class SignUpViewController: UIViewController {
         genderPickerView.dataSource = self
         
         genderTextField.inputView = genderPickerView
-        
-        view.sendSubviewToBack(ovalsGroup)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
