@@ -16,6 +16,7 @@
 		7E9FB02D28C7A63E004D2020 /* ios_target_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9FB02C28C7A63E004D2020 /* ios_target_appTests.swift */; };
 		7E9FB03728C7A63F004D2020 /* ios_target_appUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9FB03628C7A63F004D2020 /* ios_target_appUITests.swift */; };
 		7E9FB03928C7A63F004D2020 /* ios_target_appUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9FB03828C7A63F004D2020 /* ios_target_appUITestsLaunchTests.swift */; };
+		7E9FB04628C7BEE1004D2020 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9FB04528C7BEE0004D2020 /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		7E9FB03228C7A63F004D2020 /* ios-target-appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-target-appUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E9FB03628C7A63F004D2020 /* ios_target_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_target_appUITests.swift; sourceTree = "<group>"; };
 		7E9FB03828C7A63F004D2020 /* ios_target_appUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_target_appUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7E9FB04528C7BEE0004D2020 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = Onboarding/Views/SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				7E9FB01528C7A63C004D2020 /* AppDelegate.swift */,
 				7E9FB01728C7A63C004D2020 /* SceneDelegate.swift */,
 				7E9FB01928C7A63C004D2020 /* ViewController.swift */,
+				7E9FB04528C7BEE0004D2020 /* SignUpViewController.swift */,
 				7E9FB01B28C7A63C004D2020 /* Main.storyboard */,
 				7E9FB01E28C7A63E004D2020 /* Assets.xcassets */,
 				7E9FB02028C7A63E004D2020 /* LaunchScreen.storyboard */,
@@ -260,6 +263,7 @@
 			files = (
 				7E9FB01A28C7A63C004D2020 /* ViewController.swift in Sources */,
 				7E9FB01628C7A63C004D2020 /* AppDelegate.swift in Sources */,
+				7E9FB04628C7BEE1004D2020 /* SignUpViewController.swift in Sources */,
 				7E9FB01828C7A63C004D2020 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
