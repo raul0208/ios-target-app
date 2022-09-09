@@ -8,22 +8,105 @@
 import UIKit
 
 class SignInViewController: UIViewController {
+    
+    private let titleLabel = UILabel(style: .big(text: "TARGET MVD"))
+        
+    private let emailLabel = UILabel(style: .normal(text: "EMAIL"))
+    
+    private let emailField = UITextField(
+        target: self,
+        placeholder: "Type your email"
+    )
+    
+    private let passwordLabel = UILabel(style: .normal(text: "PASSWORD"))
+    
+    private let passwordField = UITextField(
+        target: self,
+        placeholder: "Type your password"
+    )
+    
+    private let signInButton = UIButton(
+        style: .primary(title: "SIGN IN")
+    )
+
+    private lazy var forgotPasswordButton = UIButton(
+        style: .secondary(title: "Forgot your password?")
+    )
+
+    private lazy var connectFacebookButton = UIButton(
+        style: .secondary(title: "CONNECT WITH FACEBOOK")
+    )
+    
+    private let lineView = UIView()
+        
+    private let signUpButton = UIButton(
+        style: .secondary(title: "SIGN UP")
+    )
+    
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+        
+    lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 20
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setViews()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setViews() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(stackView)
+        
+        lineView.translatesAutoresizingMaskIntoConstraints = false
+        lineView.layer.borderColor = UIColor.black.cgColor
+        lineView.layer.borderWidth = 1.0
+        
+        setContainerLayouts()
+        
+        NSLayoutConstraint.activate([
+            titleLabel.heightAnchor.constraint(
+                equalTo: view.heightAnchor, multiplier: 0.2
+            ),
+            lineView.heightAnchor.constraint(equalToConstant: 1),
+        ])
     }
-    */
+    
+    private func setContainerLayouts() {
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
+            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+        ])
+        
+        stackView.addArrangedSubview(subviews: [
+            titleLabel,
+            emailLabel,
+            emailField,
+            passwordLabel,
+            passwordField,
+            signInButton,
+            forgotPasswordButton,
+            connectFacebookButton,
+            lineView,
+            signUpButton
+        ])
+    }
 
 }
