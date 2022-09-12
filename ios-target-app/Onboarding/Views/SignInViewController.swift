@@ -14,15 +14,16 @@ class SignInViewController: UIViewController {
     private let emailLabel = UILabel(style: .normal(text: "EMAIL"))
     
     private let emailField = UITextField(
-        target: self,
+        target: SignInViewController.self,
         placeholder: "Type your email"
     )
     
     private let passwordLabel = UILabel(style: .normal(text: "PASSWORD"))
     
     private let passwordField = UITextField(
-        target: self,
-        placeholder: "Type your password"
+        target: SignInViewController.self,
+        placeholder: "Type your password",
+        isPassword: true
     )
     
     private let signInButton = UIButton(
@@ -49,11 +50,11 @@ class SignInViewController: UIViewController {
         return scrollView
     }()
         
-    lazy var stackView: UIStackView = {
+    private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
-        stackView.spacing = 20
+        stackView.spacing = 15
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -89,9 +90,8 @@ class SignInViewController: UIViewController {
             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
-            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
-            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
-            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 10),
+            stackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
         

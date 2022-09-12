@@ -26,6 +26,7 @@ extension UITextField {
         self.placeholder = placeholder
         self.backgroundColor = backgroundColor
         self.borderStyle = borderStyle
+        self.textAlignment = .center
         heightAnchor.constraint(equalToConstant: height).isActive = true
         isSecureTextEntry = isPassword
     }
