@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  ios-target-app
+
+  Created by Raul Piñeres Carrera on 12/09/22.
+  
+*/
+
+// GENERAL
+"general_target_title" = "TARGET MVD";
+"email_label" = "EMAIL";
+"password_label" = "PASSWORD";
+
+//SIGN UP SCREEN
+"sign_up_button" = "SIGN UP";
+
+//SIGN IN SCREEN
+"sign_in_email_placeholder" = "Type your email";
+"sign_in_password_placeholder" = "Type your password";
+"sign_in_button" = "SIGN IN";
+"sign_in_forgot_password" = "Forgot your password?";
+"sign_in_connect_facebook" = "CONNECT WITH FACEBOOK";

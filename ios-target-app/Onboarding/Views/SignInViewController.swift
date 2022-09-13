@@ -9,39 +9,39 @@ import UIKit
 
 class SignInViewController: UIViewController {
     
-    private let titleLabel = UILabel(style: .big(text: "TARGET MVD"))
+    private let titleLabel = UILabel(style: .big(text: "general_target_title".localized))
         
-    private let emailLabel = UILabel(style: .normal(text: "EMAIL"))
+    private let emailLabel = UILabel(style: .normal(text: "email_label".localized))
     
     private let emailField = UITextField(
         target: SignInViewController.self,
-        placeholder: "Type your email"
+        placeholder: "sign_in_email_placeholder".localized
     )
     
-    private let passwordLabel = UILabel(style: .normal(text: "PASSWORD"))
+    private let passwordLabel = UILabel(style: .normal(text: "password_label".localized))
     
     private let passwordField = UITextField(
         target: SignInViewController.self,
-        placeholder: "Type your password",
+        placeholder: "sign_in_password_placeholder".localized,
         isPassword: true
     )
     
     private let signInButton = UIButton(
-        style: .primary(title: "SIGN IN")
+        style: .primary(title: "sign_in_button".localized)
     )
 
     private lazy var forgotPasswordButton = UIButton(
-        style: .secondary(title: "Forgot your password?")
+        style: .secondary(title: "sign_in_forgot_password".localized)
     )
 
     private lazy var connectFacebookButton = UIButton(
-        style: .secondary(title: "CONNECT WITH FACEBOOK")
+        style: .secondary(title: "sign_in_connect_facebook".localized)
     )
     
     private let lineView = UIView()
         
     private let signUpButton = UIButton(
-        style: .secondary(title: "SIGN UP")
+        style: .secondary(title: "sign_up_button".localized)
     )
     
     private let scrollView: UIScrollView = {
@@ -70,7 +70,7 @@ class SignInViewController: UIViewController {
         scrollView.addSubview(stackView)
         
         lineView.translatesAutoresizingMaskIntoConstraints = false
-        lineView.layer.borderColor = UIColor.black.cgColor
+        lineView.layer.borderColor = UIColor.lightGray.cgColor
         lineView.layer.borderWidth = 1.0
         
         setContainerLayouts()
@@ -79,7 +79,7 @@ class SignInViewController: UIViewController {
             titleLabel.heightAnchor.constraint(
                 equalTo: view.heightAnchor, multiplier: 0.2
             ),
-            lineView.heightAnchor.constraint(equalToConstant: 1),
+            lineView.heightAnchor.constraint(equalToConstant: 1)
         ])
     }
     
