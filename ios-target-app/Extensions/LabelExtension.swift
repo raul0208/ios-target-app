@@ -10,75 +10,36 @@ import UIKit
 
 extension UILabel {
     
-    convenience init(style: LabelStyle) {
+    convenience init(
+        text: String = "",
+        textColor: UIColor = .black,
+        backgroundColor: UIColor = .clear,
+        numberOfLines: Int = 0,
+        textAlignment: NSTextAlignment = .center,
+        size: LabelSize = .normal,
+        isBold: Bool = false
+    ) {
         self.init()
         
         translatesAutoresizingMaskIntoConstraints = false
         
-        switch style {
-        case .big(let text, let textColor, let backgroundColor, let numberOfLines, let textAlignment, let fontSize):
-            self.text = text
-            self.textColor = textColor
-            self.backgroundColor = backgroundColor
-            self.numberOfLines = numberOfLines
-            self.textAlignment = textAlignment
-            self.font = UIFont.boldSystemFont(ofSize: fontSize)
-        case .normal(let text, let textColor, let backgroundColor, let numberOfLines, let textAlignment, let fontSize):
-            self.text = text
-            self.textColor = textColor
-            self.backgroundColor = backgroundColor
-            self.numberOfLines = numberOfLines
-            self.textAlignment = textAlignment
-            self.font = self.font.withSize(fontSize)
-        case .medium(let text, let textColor, let backgroundColor, let numberOfLines, let textAlignment, let fontSize):
-            self.text = text
-            self.textColor = textColor
-            self.backgroundColor = backgroundColor
-            self.numberOfLines = numberOfLines
-            self.textAlignment = textAlignment
-            self.font = self.font.withSize(fontSize)
-        case .small(let text, let textColor, let backgroundColor, let numberOfLines, let textAlignment, let fontSize):
-            self.text = text
-            self.textColor = textColor
-            self.backgroundColor = backgroundColor
-            self.numberOfLines = numberOfLines
-            self.textAlignment = textAlignment
-            self.font = self.font.withSize(fontSize)
+        self.text = text
+        self.textColor = textColor
+        self.backgroundColor = backgroundColor
+        self.numberOfLines = numberOfLines
+        self.textAlignment = textAlignment
+        
+        if isBold {
+            self.font = UIFont.boldSystemFont(ofSize: size.rawValue)
+        } else {
+            self.font = self.font.withSize(size.rawValue)
         }
     }
 }
 
-enum LabelStyle {
-    case big (
-        text: String = "",
-        textColor: UIColor = .black,
-        backgroundColor: UIColor = .clear,
-        numberOfLines: Int = 0,
-        textAlignment: NSTextAlignment = .center,
-        fontSize: CGFloat = 25
-    )
-    case normal (
-        text: String = "",
-        textColor: UIColor = .black,
-        backgroundColor: UIColor = .clear,
-        numberOfLines: Int = 0,
-        textAlignment: NSTextAlignment = .center,
-        fontSize: CGFloat = 17
-    )
-    case medium (
-        text: String = "",
-        textColor: UIColor = .black,
-        backgroundColor: UIColor = .clear,
-        numberOfLines: Int = 0,
-        textAlignment: NSTextAlignment = .center,
-        fontSize: CGFloat = 15
-    )
-    case small (
-        text: String = "",
-        textColor: UIColor = .black,
-        backgroundColor: UIColor = .clear,
-        numberOfLines: Int = 0,
-        textAlignment: NSTextAlignment = .center,
-        fontSize: CGFloat = 13
-    )
+enum LabelSize: CGFloat {
+    case big = 25
+    case normal = 17
+    case medium = 15
+    case small = 13
 }

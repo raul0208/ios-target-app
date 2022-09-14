@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension UIStackView {
-    func addArrangedSubview(subviews: [UIView]) {
+    func addArrangedSubviews(_ subviews: [UIView]) {
         for subview in subviews {
             addArrangedSubview(subview)
         }

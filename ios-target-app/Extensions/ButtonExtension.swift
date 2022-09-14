@@ -11,7 +11,11 @@ import UIKit
 extension UIButton {
     
     convenience init(
-        style: ButtonStyle,
+        color: UIColor = .black,
+        text: String = "",
+        textColor: UIColor = .white,
+        cornerRadius: CGFloat = UI.Button.cornerRadius,
+        height: CGFloat = UI.Button.height,
         actionHandler: (target: Any, action: Selector)? = nil
     ) {
         self.init()
@@ -22,36 +26,10 @@ extension UIButton {
             addTarget(actionHandler?.target, action: action, for: .touchUpInside)
         }
         
-        switch style {
-        case .primary(let color, let title, let titleColor, let cornerRadius, let height):
-            setTitle(title, for: .normal)
-            setTitleColor(titleColor, for: .normal)
-            backgroundColor = color
-            setRoundBorders(cornerRadius)
-            heightAnchor.constraint(equalToConstant: height).isActive = true
-        case .secondary(let color, let title, let titleColor, let cornerRadius, let height):
-            setTitle(title, for: .normal)
-            setTitleColor(titleColor, for: .normal)
-            backgroundColor = color
-            setRoundBorders(cornerRadius)
-            heightAnchor.constraint(equalToConstant: height).isActive = true
-        }
+        setTitle(text, for: .normal)
+        setTitleColor(textColor, for: .normal)
+        backgroundColor = color
+        setRoundBorders(cornerRadius)
+        heightAnchor.constraint(equalToConstant: height).isActive = true
     }
-}
-
-enum ButtonStyle {
-    case primary (
-        color: UIColor = .black,
-        title: String = "",
-        titleColor: UIColor = .white,
-        cornerRadius: CGFloat = UI.Button.cornerRadius,
-        height: CGFloat = UI.Button.height
-    )
-    case secondary (
-        color: UIColor = .white,
-        title: String = "",
-        titleColor: UIColor = .black,
-        cornerRadius: CGFloat = UI.Button.cornerRadius,
-        height: CGFloat = UI.Button.height
-    )
 }
