@@ -83,7 +83,7 @@ class SignInViewController: UIViewController {
         scrollView.addSubview(stackView)
         
         lineView.translatesAutoresizingMaskIntoConstraints = false
-        lineView.layer.borderColor = UIColor.lightGray.cgColor
+        lineView.layer.borderColor = UIColor.black.cgColor
         lineView.layer.borderWidth = 1.0
         
         setContainerLayouts()
@@ -95,16 +95,11 @@ class SignInViewController: UIViewController {
     }
     
     private func setContainerLayouts() {
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            
-            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            stackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
-        ])
+        scrollView.attachHorizontally(to: view, leadingMargin: 0, trailingMargin: 0)
+        scrollView.attachVertically(to: view, topMargin: 0, bottomMargin: 0)
+        
+        stackView.attachVertically(to: scrollView, topMargin: 40, bottomMargin: 0)
+        stackView.centerHorizontally(with: scrollView)
         
         stackView.addArrangedSubviews([
             titleLabel,
@@ -119,5 +114,4 @@ class SignInViewController: UIViewController {
             signUpButton
         ])
     }
-
 }
