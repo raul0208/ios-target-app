@@ -13,6 +13,11 @@
 
 //SIGN UP SCREEN
 "sign_up_button" = "SIGN UP";
+"sign_up_name_label" = "NAME";
+"sign_up_password_placeholder" = "MIN. 6 CHARACTERS LONG";
+"sign_up_confirm_password_label" = "CONFIRM PASSWORD";
+"sign_up_gender_label" = "GENDER";
+"sign_up_gender_placeholder" = "SELECT YOUR GENDER";
 
 //SIGN IN SCREEN
 "sign_in_email_placeholder" = "Type your email";

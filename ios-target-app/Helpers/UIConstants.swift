@@ -25,4 +25,19 @@ struct UI {
         static let width: CGFloat = 128.0
         static let spacing: CGFloat = 20.0
     }
+    
+    enum OvalImageView {
+        static let height: CGFloat = 190
+    }
+    
+    enum StackView {
+        static let marginBig: CGFloat = 40
+        static let marginMedium: CGFloat = 30
+        static let marginSmall: CGFloat = 18
+    }
+    
+    enum TitleLabel {
+        static let heightSmallMultiplier: CGFloat = 0.14
+        static let heightBigMultiplier: CGFloat = 0.2
+    }
 }

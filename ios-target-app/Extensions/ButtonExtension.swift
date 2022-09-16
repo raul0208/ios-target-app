@@ -16,14 +16,15 @@ extension UIButton {
         textColor: UIColor = .white,
         cornerRadius: CGFloat = UI.Button.cornerRadius,
         height: CGFloat = UI.Button.height,
-        actionHandler: (target: Any, action: Selector)? = nil
+        target: Any? = nil,
+        action: Selector? = nil
     ) {
         self.init()
         
         translatesAutoresizingMaskIntoConstraints = false
         
-        if let action = actionHandler?.action {
-            addTarget(actionHandler?.target, action: action, for: .touchUpInside)
+        if let action = action {
+            addTarget(target, action: action, for: .touchUpInside)
         }
         
         setTitle(text, for: .normal)

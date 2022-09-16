@@ -9,6 +9,8 @@ import UIKit
 
 class SignInViewController: UIViewController {
     
+    private lazy var ovalsImageView = UIImageView()
+    
     private let titleLabel = UILabel(
         text: "general_target_title".localized,
         size: .big,
@@ -52,10 +54,13 @@ class SignInViewController: UIViewController {
     
     private let lineView = UIView()
         
-    private let signUpButton = UIButton(
+    private lazy var signUpButton = UIButton(
         color: .clear,
         text: "sign_up_button".localized,
-        textColor: .black)
+        textColor: .black,
+        target: self,
+        action: #selector(signUpTapped)
+    )
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -78,9 +83,24 @@ class SignInViewController: UIViewController {
         setViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     private func setViews() {
-        view.addSubview(scrollView)
+        view.addSubviews([
+            ovalsImageView,
+            scrollView
+        ])
+        view.backgroundColor = .white
         scrollView.addSubview(stackView)
+        
+        let ovalsImage = UIImage(named: "ovalsGroup")
+        ovalsImageView.contentMode = UIView.ContentMode.scaleAspectFill
+        ovalsImageView.frame.size.width = view.bounds.width
+        ovalsImageView.frame.size.height = UI.OvalImageView.height
+        ovalsImageView.image = ovalsImage
         
         lineView.translatesAutoresizingMaskIntoConstraints = false
         lineView.layer.borderColor = UIColor.black.cgColor
@@ -89,7 +109,7 @@ class SignInViewController: UIViewController {
         setContainerLayouts()
         
         NSLayoutConstraint.activate([
-            titleLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2),
+            titleLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: UI.TitleLabel.heightBigMultiplier),
             lineView.heightAnchor.constraint(equalToConstant: 1)
         ])
     }
@@ -98,7 +118,7 @@ class SignInViewController: UIViewController {
         scrollView.attachHorizontally(to: view, leadingMargin: 0, trailingMargin: 0)
         scrollView.attachVertically(to: view, topMargin: 0, bottomMargin: 0)
         
-        stackView.attachVertically(to: scrollView, topMargin: 40, bottomMargin: 0)
+        stackView.attachVertically(to: scrollView, topMargin: UI.StackView.marginBig, bottomMargin: 0)
         stackView.centerHorizontally(with: scrollView)
         
         stackView.addArrangedSubviews([
@@ -113,5 +133,10 @@ class SignInViewController: UIViewController {
             lineView,
             signUpButton
         ])
+    }
+    
+    // HANDLE NAVIGATION AND ACTIONS
+    @objc func signUpTapped() {
+        AppNavigator.shared.navigate(to: OnboardingRoutes.signUp, with: .push)
     }
 }
