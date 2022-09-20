@@ -7,13 +7,11 @@
 
 import Foundation
 
-
 class AppNavigator: BaseNavigator {
   static let shared = AppNavigator()
 
   init() {
-    let initialRoute: Route = OnboardingRoutes.signIn
-    super.init(with: initialRoute)
+    super.init(with: OnboardingRoutes.signIn)
   }
 
   required init(with route: Route) {

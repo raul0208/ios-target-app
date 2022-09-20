@@ -11,6 +11,7 @@ import UIKit
 struct UI {
     enum Defaults {
         static let margin: CGFloat = 32
+        static let lineBorderWidth: CGFloat = 1.0
     }
     
     enum TextField {
@@ -27,13 +28,16 @@ struct UI {
     }
     
     enum OvalImageView {
-        static let height: CGFloat = 190
+        static let heightBig: CGFloat = 190
+        static let heightMedium: CGFloat = 120
     }
     
     enum StackView {
         static let marginBig: CGFloat = 40
         static let marginMedium: CGFloat = 30
         static let marginSmall: CGFloat = 18
+        static let defaultSpacing: CGFloat = 10
+        static let formSpacing: CGFloat = 15
     }
     
     enum TitleLabel {

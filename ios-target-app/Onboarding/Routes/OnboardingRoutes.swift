@@ -15,19 +15,9 @@ enum OnboardingRoutes: Route {
   var screen: UIViewController {
     switch self {
     case .signIn:
-      return buildSignInViewController()
+      return SignInViewController()
     case .signUp:
-      return buildSignUpViewController()
+      return SignUpViewController()
     }
-  }
-
-  private func buildSignInViewController() -> UIViewController {
-    let signIn = SignInViewController()
-    return signIn
-  }
-
-  private func buildSignUpViewController() -> UIViewController {
-    let signUp = SignUpViewController()
-    return signUp
   }
 }

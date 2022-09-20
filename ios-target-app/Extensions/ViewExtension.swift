@@ -63,4 +63,10 @@ extension UIView {
             constant: offset
         ).isActive = true
     }
+    
+    func setToLineView(borderColor: CGColor = UIColor.black.cgColor, borderWidth: CGFloat = UI.Defaults.lineBorderWidth) {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.layer.borderColor = borderColor
+        self.layer.borderWidth = borderWidth
+    }
 }

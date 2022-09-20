@@ -9,9 +9,10 @@ import UIKit
 
 class SignUpViewController: UIViewController {
     
+    //It will be moved to a ViewModel in further PR's
     private let genders = ["Female", "Male", "Not defined"]
     
-    private lazy var ovalsImageView = UIImageView()
+    private lazy var ovalsImageView = UIImageView(imageResource: "ovalsGroup", height: UI.OvalImageView.heightMedium)
     
     private lazy var titleLabel = UILabel(
         text: "general_target_title".localized,
@@ -88,14 +89,11 @@ class SignUpViewController: UIViewController {
         return scrollView
     }()
         
-    private lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
-        stackView.spacing = 15
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
+    private lazy var stackView = UIStackView(
+        orientation: .vertical,
+        distribution: .equalSpacing,
+        spacing: UI.StackView.formSpacing
+    )
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,38 +103,21 @@ class SignUpViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
       super.viewWillAppear(animated)
-      navigationController?.setNavigationBarHidden(false, animated: true)
+      navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     private func setViews() {
-        view.addSubviews([
-            ovalsImageView,
-            scrollView
-        ])
+        view.addSubviews([ovalsImageView,scrollView])
         view.backgroundColor = .white
         scrollView.addSubview(stackView)
-        
-        let ovalsImage = UIImage(named: "ovalsGroup")
-        ovalsImageView.contentMode = UIView.ContentMode.scaleAspectFill
-        ovalsImageView.frame.size.width = view.bounds.width
-        ovalsImageView.frame.size.height = UI.OvalImageView.height
-        ovalsImageView.image = ovalsImage
+        lineView.setToLineView()
         
         genderPickerView.delegate = self
         genderPickerView.dataSource = self
         
         genderField.inputView = genderPickerView
         
-        lineView.translatesAutoresizingMaskIntoConstraints = false
-        lineView.layer.borderColor = UIColor.black.cgColor
-        lineView.layer.borderWidth = 1.0
-        
         setContainerLayouts()
-        
-        NSLayoutConstraint.activate([
-            titleLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: UI.TitleLabel.heightSmallMultiplier),
-            lineView.heightAnchor.constraint(equalToConstant: 1)
-        ])
     }
 
     private func setContainerLayouts() {
@@ -145,6 +126,8 @@ class SignUpViewController: UIViewController {
         
         stackView.attachVertically(to: scrollView, topMargin: UI.StackView.marginSmall, bottomMargin: 0)
         stackView.centerHorizontally(with: scrollView)
+        
+        ovalsImageView.attachHorizontally(to: view, leadingMargin: 0, trailingMargin: 0)
         
         stackView.addArrangedSubviews([
             titleLabel,
@@ -161,6 +144,11 @@ class SignUpViewController: UIViewController {
             signUpButton,
             lineView,
             signInButton
+        ])
+        
+        NSLayoutConstraint.activate([
+            titleLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: UI.TitleLabel.heightSmallMultiplier),
+            lineView.heightAnchor.constraint(equalToConstant: 1)
         ])
     }
     
