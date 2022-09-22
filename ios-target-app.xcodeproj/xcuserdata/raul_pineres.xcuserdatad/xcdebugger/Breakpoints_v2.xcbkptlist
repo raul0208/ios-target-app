@@ -286,8 +286,8 @@
             filePath = "ios-target-app/Extensions/ImageViewExtension.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "init(imageResource:contentMode:width:height:)"
             landmarkType = "7">
          </BreakpointContent>

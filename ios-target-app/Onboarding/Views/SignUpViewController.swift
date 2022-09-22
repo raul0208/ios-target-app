@@ -60,7 +60,7 @@ class SignUpViewController: UIViewController {
         size: .normal
     )
     
-    private lazy var genderField = UITextField(
+    private lazy var genderTextfield = UITextField(
         target: self,
         placeholder: "sign_up_gender_placeholder".localized
     )
@@ -115,7 +115,7 @@ class SignUpViewController: UIViewController {
         genderPickerView.delegate = self
         genderPickerView.dataSource = self
         
-        genderField.inputView = genderPickerView
+        genderTextfield.inputView = genderPickerView
         
         setContainerLayouts()
     }
@@ -140,7 +140,7 @@ class SignUpViewController: UIViewController {
             confirmPasswordLabel,
             confirmPasswordField,
             genderLabel,
-            genderField,
+            genderTextfield,
             signUpButton,
             lineView,
             signInButton
@@ -152,7 +152,7 @@ class SignUpViewController: UIViewController {
         ])
     }
     
-    // HANDLE NAVIGATION AND ACTIONS
+    // MARK: - HANDLE NAVIGATION AND ACTIONS
     @objc func signInTapped() {
         AppNavigator.shared.navigate(to: OnboardingRoutes.signIn, with: .push)
     }
@@ -169,8 +169,8 @@ extension SignUpViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        genderField.text = genders[row]
-        genderField.resignFirstResponder()
+        genderTextfield.text = genders[row]
+        genderTextfield.resignFirstResponder()
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
