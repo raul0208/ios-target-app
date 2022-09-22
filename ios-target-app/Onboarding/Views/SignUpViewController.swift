@@ -107,7 +107,7 @@ class SignUpViewController: UIViewController {
     }
     
     private func setViews() {
-        view.addSubviews([ovalsImageView,scrollView])
+        view.addSubviews([ ovalsImageView, scrollView ])
         view.backgroundColor = .white
         scrollView.addSubview(stackView)
         lineView.setToLineView()
