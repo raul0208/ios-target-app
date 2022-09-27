@@ -12,6 +12,10 @@ class SignUpViewController: UIViewController {
     //It will be moved to a ViewModel in further PR's
     private let genders = ["Female", "Male", "Not defined"]
     
+    // MARK: - ViewModels
+    private let viewModel: SignUpViewModel
+    
+    // MARK: - Outlets
     private lazy var ovalsImageView = UIImageView(imageResource: "ovalsGroup", height: UI.OvalImageView.heightMedium)
     
     private lazy var titleLabel = UILabel(
@@ -25,14 +29,14 @@ class SignUpViewController: UIViewController {
         size: .normal
     )
     
-    private lazy var nameField = UITextField(target: self)
+    private lazy var nameField = UITextField(target: self, selector: #selector(formEditingChange))
     
     private lazy var emailLabel = UILabel(
         text: "email_label".localized,
         size: .normal
     )
     
-    private lazy var emailField = UITextField(target: self)
+    private lazy var emailField = UITextField(target: self, selector: #selector(formEditingChange))
     
     private lazy var passwordLabel = UILabel(
         text: "password_label".localized,
@@ -41,6 +45,7 @@ class SignUpViewController: UIViewController {
     
     private lazy var passwordField = UITextField(
         target: self,
+        selector: #selector(formEditingChange),
         placeholder: "sign_up_password_placeholder".localized,
         isPassword: true
     )
@@ -52,6 +57,7 @@ class SignUpViewController: UIViewController {
     
     private lazy var confirmPasswordField = UITextField(
         target: self,
+        selector: #selector(formEditingChange),
         isPassword: true
     )
     
@@ -62,7 +68,9 @@ class SignUpViewController: UIViewController {
     
     private lazy var genderTextfield = UITextField(
         target: self,
-        placeholder: "sign_up_gender_placeholder".localized
+        selector: #selector(formEditingChange),
+        placeholder: "sign_up_gender_placeholder".localized,
+        pickerView: genderPickerView
     )
     
     private lazy var genderPickerView: UIPickerView = {
@@ -71,7 +79,11 @@ class SignUpViewController: UIViewController {
         return picker
     }()
     
-    private lazy var signUpButton = UIButton(text: "sign_up_button".localized)
+    private lazy var signUpButton = UIButton(
+        text: "sign_up_button".localized,
+        target: self,
+        action: #selector(signUpButtonTapped)
+    )
     
     private lazy var lineView = UIView()
         
@@ -80,7 +92,7 @@ class SignUpViewController: UIViewController {
         text: "sign_in_button".localized,
         textColor: .black,
         target: self,
-        action: #selector(signInTapped)
+        action: #selector(signInButtonTapped)
     )
     
     private lazy var scrollView: UIScrollView = {
@@ -94,6 +106,16 @@ class SignUpViewController: UIViewController {
         distribution: .equalSpacing,
         spacing: UI.StackView.formSpacing
     )
+    
+    init(viewModel: SignUpViewModel) {
+      self.viewModel = viewModel
+      super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+      fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,7 +137,7 @@ class SignUpViewController: UIViewController {
         genderPickerView.delegate = self
         genderPickerView.dataSource = self
         
-        genderTextfield.inputView = genderPickerView
+        //setSignUpButton(enabled: false)
         
         setContainerLayouts()
     }
@@ -153,10 +175,35 @@ class SignUpViewController: UIViewController {
     }
     
     // MARK: - HANDLE NAVIGATION AND ACTIONS
-    @objc func signInTapped() {
+    @objc func signUpButtonTapped() {
+        viewModel.signup()
+    }
+    
+    @objc func signInButtonTapped() {
         AppNavigator.shared.navigate(to: OnboardingRoutes.signIn, with: .push)
     }
     
+    @objc func formEditingChange(_ sender: UITextField) {
+      let newValue = sender.text ?? ""
+      switch sender {
+      case nameField:
+          viewModel.name = newValue
+      case emailField:
+        viewModel.email = newValue
+      case passwordField:
+        viewModel.password = newValue
+      case confirmPasswordField:
+        viewModel.passwordConfirmation = newValue
+      case genderTextfield:
+        viewModel.gender = newValue
+      default: break
+      }
+    }
+    
+    func setSignUpButtonStatus(enabled: Bool) {
+      signUpButton.alpha = enabled ? 1 : 0.5
+      signUpButton.isEnabled = enabled
+    }
 }
 
 extension SignUpViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -170,10 +217,15 @@ extension SignUpViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         genderTextfield.text = genders[row]
+        genderTextfield.sendActions(for: .editingChanged)
         genderTextfield.resignFirstResponder()
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return genders[row]
+    }
+    
+    func formDidChange() {
+      setSignUpButtonStatus(enabled: viewModel.hasValidData)
     }
 }

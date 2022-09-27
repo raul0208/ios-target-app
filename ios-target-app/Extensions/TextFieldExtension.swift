@@ -15,14 +15,21 @@ extension UITextField {
         backgroundColor: UIColor = .white,
         height: CGFloat = UI.TextField.height,
         borderStyle: BorderStyle = .line,
+        pickerView: UIPickerView? = nil,
         isPassword: Bool = false
     ){
         self.init()
             
         translatesAutoresizingMaskIntoConstraints = false
+        
+        if let pickerView = pickerView {
+            self.inputView = pickerView
+        }
+        
         if let selector = selector {
             addTarget(target, action: selector, for: .editingChanged)
         }
+        
         self.placeholder = placeholder
         self.backgroundColor = backgroundColor
         self.borderStyle = borderStyle
