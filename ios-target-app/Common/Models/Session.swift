@@ -20,7 +20,7 @@ struct Session: Codable {
     case accessToken = "access-token"
     case expiry
   }
-
+  
   init(
     uid: String? = nil, client: String? = nil,
     token: String? = nil, expires: Date? = nil
@@ -35,11 +35,11 @@ struct Session: Codable {
     guard var stringHeaders = headers as? [String: String] else {
       return nil
     }
-
+    
     stringHeaders.lowercaseKeys()
     
     if let expiryString = stringHeaders[HTTPHeader.expiry.rawValue],
-      let expiryNumber = Double(expiryString) {
+       let expiryNumber = Double(expiryString) {
       expiry = Date(timeIntervalSince1970: expiryNumber)
     }
     uid = stringHeaders[HTTPHeader.uid.rawValue]
