@@ -19,18 +19,25 @@ internal enum AuthEndpoint: RailsAPIEndpoint {
     password: String
   )
   
+  case signIn(
+    email: String,
+    password: String
+  )
+  
   private static let usersURL = "/users/"
   
   var path: String {
     switch self {
     case .signUp:
       return AuthEndpoint.usersURL
+    case .signIn:
+      return AuthEndpoint.usersURL + "sign_in"
     }
   }
   
   var method: Network.HTTPMethod {
     switch self {
-    case .signUp:
+    case .signUp, .signIn:
       return .post
     }
   }
@@ -55,6 +62,13 @@ internal enum AuthEndpoint: RailsAPIEndpoint {
         "password_confirmation": password
       ]
       return ["user": parameters]
+    case .signIn(let email, let password):
+      return [
+        "user": [
+          "email": email,
+          "password": password
+        ]
+      ]
     }
   }
 }

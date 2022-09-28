@@ -9,6 +9,9 @@ import UIKit
 
 class SignInViewController: UIViewController {
   
+  // MARK: - ViewModels
+  private let viewModel: SignInViewModel
+  
   private lazy var ovalsImageView = UIImageView(imageResource: "ovalsGroup", height: UI.OvalImageView.heightBig)
   
   private lazy var titleLabel = UILabel(
@@ -24,6 +27,7 @@ class SignInViewController: UIViewController {
   
   private lazy var emailField = UITextField(
     target: self,
+    selector: #selector(formEditingChange),
     placeholder: "sign_in_email_placeholder".localized
   )
   
@@ -34,11 +38,16 @@ class SignInViewController: UIViewController {
   
   private lazy var passwordField = UITextField(
     target: self,
+    selector: #selector(formEditingChange),
     placeholder: "sign_in_password_placeholder".localized,
     isPassword: true
   )
   
-  private lazy var signInButton = UIButton(text: "sign_in_button".localized)
+  private lazy var signInButton = UIButton(
+    text: "sign_in_button".localized,
+    target: self,
+    action: #selector(signInButtonTapped)
+  )
   
   private lazy var forgotPasswordButton = UIButton(
     color: .clear,
@@ -73,6 +82,16 @@ class SignInViewController: UIViewController {
     distribution: .equalSpacing,
     spacing: UI.StackView.formSpacing
   )
+  
+  init(viewModel: SignInViewModel) {
+    self.viewModel = viewModel
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  @available(*, unavailable)
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -123,7 +142,22 @@ class SignInViewController: UIViewController {
   }
   
   // HANDLE NAVIGATION AND ACTIONS
+  @objc func signInButtonTapped() {
+    viewModel.signIn()
+  }
+  
   @objc func signUpTapped() {
     AppNavigator.shared.navigate(to: OnboardingRoutes.signUp, with: .push)
+  }
+  
+  @objc func formEditingChange(_ sender: UITextField) {
+    let newValue = sender.text ?? ""
+    switch sender {
+    case emailField:
+      viewModel.fieldChanged(field: .email, value: newValue)
+    case passwordField:
+      viewModel.fieldChanged(field: .password, value: newValue)
+    default: break
+    }
   }
 }
