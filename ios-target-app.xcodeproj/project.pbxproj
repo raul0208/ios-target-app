@@ -20,6 +20,16 @@
 		7E9FB04828CA904A004D2020 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9FB04728CA904A004D2020 /* SignInViewController.swift */; };
 		7EAFD82528DA09BE002B4046 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAFD82428DA09BE002B4046 /* ImageViewExtension.swift */; };
 		7EAFD83628DB905E002B4046 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAFD83528DB905E002B4046 /* DictionaryExtension.swift */; };
+		7EAFD83A28DC8C2D002B4046 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAFD83928DC8C2D002B4046 /* User.swift */; };
+		7EAFD83C28DC8C96002B4046 /* NetworkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAFD83B28DC8C96002B4046 /* NetworkState.swift */; };
+		7EAFD83E28DC90A9002B4046 /* AuthViewModelStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAFD83D28DC90A9002B4046 /* AuthViewModelStateDelegate.swift */; };
+		7EAFD84428DCBC14002B4046 /* SessionHeadersProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAFD84328DCBC14002B4046 /* SessionHeadersProvider.swift */; };
+		7EE6300A28DDB9A300858594 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6300928DDB9A300858594 /* Session.swift */; };
+		7EE6300C28DDBB6100858594 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6300B28DDBB6100858594 /* SignUpViewModel.swift */; };
+		7EE6300F28DDBEC500858594 /* AuthenticationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6300E28DDBEC500858594 /* AuthenticationServices.swift */; };
+		7EE6301228DDC37200858594 /* AuthEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6301128DDC37200858594 /* AuthEndpoint.swift */; };
+		7EE6301528DDCAD800858594 /* APIClient+Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6301428DDCAD800858594 /* APIClient+Application.swift */; };
+		7EE6301828DDCBB800858594 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6301728DDCBB800858594 /* SessionManager.swift */; };
 		7EEDF2A328CB9627009BE3A5 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDF2A228CB9627009BE3A5 /* TextFieldExtension.swift */; };
 		7EEDF2A528CB98CD009BE3A5 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDF2A428CB98CD009BE3A5 /* ViewExtension.swift */; };
 		7EEDF2A828CB9D8C009BE3A5 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDF2A728CB9D8C009BE3A5 /* UIConstants.swift */; };
@@ -70,6 +80,16 @@
 		7E9FB04728CA904A004D2020 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		7EAFD82428DA09BE002B4046 /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		7EAFD83528DB905E002B4046 /* DictionaryExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
+		7EAFD83928DC8C2D002B4046 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		7EAFD83B28DC8C96002B4046 /* NetworkState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkState.swift; sourceTree = "<group>"; };
+		7EAFD83D28DC90A9002B4046 /* AuthViewModelStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModelStateDelegate.swift; sourceTree = "<group>"; };
+		7EAFD84328DCBC14002B4046 /* SessionHeadersProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionHeadersProvider.swift; sourceTree = "<group>"; };
+		7EE6300928DDB9A300858594 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		7EE6300B28DDBB6100858594 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		7EE6300E28DDBEC500858594 /* AuthenticationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServices.swift; sourceTree = "<group>"; };
+		7EE6301128DDC37200858594 /* AuthEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEndpoint.swift; sourceTree = "<group>"; };
+		7EE6301428DDCAD800858594 /* APIClient+Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+Application.swift"; sourceTree = "<group>"; };
+		7EE6301728DDCBB800858594 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		7EEDF2A228CB9627009BE3A5 /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
 		7EEDF2A428CB98CD009BE3A5 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		7EEDF2A728CB9D8C009BE3A5 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
@@ -155,6 +175,9 @@
 		7E9FB01428C7A63C004D2020 /* ios-target-app */ = {
 			isa = PBXGroup;
 			children = (
+				7EE6301628DDCBA900858594 /* Managers */,
+				7EAFD84028DCBBDD002B4046 /* Networking */,
+				7EAFD83728DC8C0B002B4046 /* Common */,
 				7EEDF2C028D23EC4009BE3A5 /* Onboarding */,
 				7EEDF2BD28D23DC9009BE3A5 /* Navigators */,
 				7EEDF2B628CFCCCD009BE3A5 /* Resources */,
@@ -201,6 +224,92 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		7EAFD83728DC8C0B002B4046 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7EAFD83828DC8C1B002B4046 /* Models */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		7EAFD83828DC8C1B002B4046 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7EAFD83928DC8C2D002B4046 /* User.swift */,
+				7EAFD83B28DC8C96002B4046 /* NetworkState.swift */,
+				7EAFD83D28DC90A9002B4046 /* AuthViewModelStateDelegate.swift */,
+				7EE6300928DDB9A300858594 /* Session.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7EAFD83F28DCB607002B4046 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				7EE6300B28DDBB6100858594 /* SignUpViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		7EAFD84028DCBBDD002B4046 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				7EE6301328DDCABE00858594 /* Extensions */,
+				7EE6300D28DDBEA100858594 /* Services */,
+				7EAFD84128DCBBED002B4046 /* Type */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		7EAFD84128DCBBED002B4046 /* Type */ = {
+			isa = PBXGroup;
+			children = (
+				7EAFD84228DCBBF4002B4046 /* API */,
+			);
+			path = Type;
+			sourceTree = "<group>";
+		};
+		7EAFD84228DCBBF4002B4046 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				7EAFD84328DCBC14002B4046 /* SessionHeadersProvider.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		7EE6300D28DDBEA100858594 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7EE6301028DDC36100858594 /* Endpoints */,
+				7EE6300E28DDBEC500858594 /* AuthenticationServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		7EE6301028DDC36100858594 /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				7EE6301128DDC37200858594 /* AuthEndpoint.swift */,
+			);
+			path = Endpoints;
+			sourceTree = "<group>";
+		};
+		7EE6301328DDCABE00858594 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7EE6301428DDCAD800858594 /* APIClient+Application.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7EE6301628DDCBA900858594 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				7EE6301728DDCBB800858594 /* SessionManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		7EEDF2A628CB9D73009BE3A5 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +346,7 @@
 		7EEDF2C028D23EC4009BE3A5 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				7EAFD83F28DCB607002B4046 /* ViewModels */,
 				7EEDF2C228D23F34009BE3A5 /* Routes */,
 				7EEDF2C128D23EDA009BE3A5 /* Views */,
 			);
@@ -515,16 +625,26 @@
 				7EEDF2BF28D23DD7009BE3A5 /* Navigator.swift in Sources */,
 				7E9FB01628C7A63C004D2020 /* AppDelegate.swift in Sources */,
 				7E9FB04628C7BEE1004D2020 /* SignUpViewController.swift in Sources */,
+				7EAFD83E28DC90A9002B4046 /* AuthViewModelStateDelegate.swift in Sources */,
+				7EAFD83C28DC8C96002B4046 /* NetworkState.swift in Sources */,
+				7EE6301228DDC37200858594 /* AuthEndpoint.swift in Sources */,
 				7EEDF2A528CB98CD009BE3A5 /* ViewExtension.swift in Sources */,
+				7EAFD83A28DC8C2D002B4046 /* User.swift in Sources */,
 				7EAFD82528DA09BE002B4046 /* ImageViewExtension.swift in Sources */,
+				7EE6301828DDCBB800858594 /* SessionManager.swift in Sources */,
 				7EEDF2A328CB9627009BE3A5 /* TextFieldExtension.swift in Sources */,
 				7EEDF2C628D23FB1009BE3A5 /* AppNavigator.swift in Sources */,
 				7EAFD83628DB905E002B4046 /* DictionaryExtension.swift in Sources */,
+				7EE6300A28DDB9A300858594 /* Session.swift in Sources */,
+				7EAFD84428DCBC14002B4046 /* SessionHeadersProvider.swift in Sources */,
+				7EE6300F28DDBEC500858594 /* AuthenticationServices.swift in Sources */,
 				7E9FB04828CA904A004D2020 /* SignInViewController.swift in Sources */,
 				7EEDF2B928CFD416009BE3A5 /* StringExtension.swift in Sources */,
 				7EEDF2AD28CBE320009BE3A5 /* ButtonExtension.swift in Sources */,
 				7EEDF2C428D23F48009BE3A5 /* OnboardingRoutes.swift in Sources */,
+				7EE6300C28DDBB6100858594 /* SignUpViewModel.swift in Sources */,
 				7EEDF2A828CB9D8C009BE3A5 /* UIConstants.swift in Sources */,
+				7EE6301528DDCAD800858594 /* APIClient+Application.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -700,6 +820,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BASE_URL = "https://target-api-induction-v2.herokuapp.com/api/v1";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -729,6 +850,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BASE_URL = "https://target-api-induction-v2.herokuapp.com/api/v1";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;

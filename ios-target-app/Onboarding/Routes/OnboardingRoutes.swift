@@ -17,7 +17,7 @@ enum OnboardingRoutes: Route {
     case .signIn:
       return SignInViewController()
     case .signUp:
-      return SignUpViewController()
+      return SignUpViewController(viewModel: SignUpViewModel())
     }
   }
 }
