@@ -1,31 +1,23 @@
 //
-//  SignUpViewModel.swift
+//  SignInViewModel.swift
 //  ios-target-app
 //
-//  Created by Raul Piñeres Carrera on 23/09/22.
+//  Created by Raul Piñeres Carrera on 28/09/22.
 //
 
 import Foundation
 import UIKit
 
-protocol SignUpViewModelDelegate: AuthViewModelStateDelegate {
+protocol SignInViewModelDelegate: AuthViewModelStateDelegate {
   func formDidChange()
 }
 
-enum AuthViewModelState {
-  case loggedIn
-  case network(state: NetworkState)
-}
-
-enum SignUpField {
-  case name
+enum SignInField {
   case email
   case password
-  case passwordConfirmation
-  case gender
 }
 
-class SignUpViewModel {
+class SignInViewModel {
   
   private let authServices: AuthenticationServices
   
@@ -39,23 +31,10 @@ class SignUpViewModel {
     }
   }
   
-  weak var delegate: SignUpViewModelDelegate?
-  
-  var name = "" {
-    didSet {
-      delegate?.formDidChange()
-    }
-  }
+  weak var delegate: SignInViewModelDelegate?
   
   var email = "" {
     didSet {
-      delegate?.formDidChange()
-    }
-  }
-  
-  var gender = "" {
-    didSet {
-      gender = gender.lowercased()
       delegate?.formDidChange()
     }
   }
@@ -66,22 +45,14 @@ class SignUpViewModel {
     }
   }
   
-  var passwordConfirmation = "" {
-    didSet {
-      delegate?.formDidChange()
-    }
-  }
-  
   var hasValidData: Bool {
-    email.isEmailFormatted() && !gender.isEmpty && !password.isEmpty && password == passwordConfirmation
+    email.isEmailFormatted() && !password.isEmpty
   }
   
-  func signup() {
+  func signIn() {
     state = .network(state: .loading)
-    authServices.signUp(
-      name: name,
+    authServices.signIn(
       email: email,
-      gender: gender,
       password: password
     ) { [weak self] result in
       guard let self = self else { return }
@@ -96,18 +67,13 @@ class SignUpViewModel {
     }
   }
   
-  func fieldChanged(field: SignUpField, value: String) {
+  func fieldChanged(field: SignInField, value: String) {
     switch field {
-    case .name:
-      self.name = value
     case .email:
       self.email = value
     case .password:
       self.password = value
-    case .passwordConfirmation:
-      self.passwordConfirmation = value
-    case .gender:
-      self.gender = value
     }
   }
 }
+
