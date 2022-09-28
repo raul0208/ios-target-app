@@ -6,11 +6,6 @@
 //
 
 import Foundation
-import UIKit
-
-protocol NetworkStatusDelegate: AnyObject {
-  func networkStatusChanged(to networkStatus: NetworkState)
-}
 
 protocol AuthViewModelStateDelegate: NetworkStatusDelegate {
   func didUpdateState(to state: AuthViewModelState)

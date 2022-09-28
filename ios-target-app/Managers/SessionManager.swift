@@ -8,15 +8,15 @@
 import UIKit
 
 internal class SessionManager: CurrentUserSessionProvider {
-
+  
   static let shared = SessionManager()
-
+  
   private let userDefaults: UserDefaults
-
+  
   init(userDefaults: UserDefaults = .standard) {
     self.userDefaults = userDefaults
   }
-
+  
   var currentSession: Session? {
     get {
       if
@@ -40,7 +40,8 @@ internal class SessionManager: CurrentUserSessionProvider {
   
   var validSession: Bool {
     if let session = currentSession, let uid = session.uid,
-       let tkn = session.accessToken, let client = session.client {
+       let tkn = session.accessToken, let client = session.client
+    {
       return !uid.isEmpty && !tkn.isEmpty && !client.isEmpty
     }
     return false

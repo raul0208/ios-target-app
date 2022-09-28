@@ -17,9 +17,7 @@ internal class AuthenticationServices {
     
     private let apiClient: APIClient
     
-    init(
-        apiClient: APIClient = iOSBaseAPIClient.shared
-    ) {
+    init(apiClient: APIClient = iOSBaseAPIClient.shared) {
         self.apiClient = apiClient
     }
     
@@ -37,8 +35,7 @@ internal class AuthenticationServices {
                 username: name,
                 email: email,
                 gender: gender,
-                password: password,
-                passwordConfirmation: password
+                password: password
             )
         ) { (result: Result<UserResponse?, Error>, responseHeaders) in
             switch result {

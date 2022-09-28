@@ -16,8 +16,7 @@ internal enum AuthEndpoint: RailsAPIEndpoint {
         username: String,
         email: String,
         gender: String,
-        password: String,
-        passwordConfirmation: String
+        password: String
     )
     
     private static let usersURL = "/users/"
@@ -44,8 +43,7 @@ internal enum AuthEndpoint: RailsAPIEndpoint {
             let username,
             let email,
             let gender,
-            let password,
-            let passwordConfirmation
+            let password
         ):
             let parameters = [
                 "first_name": firstName,
@@ -54,7 +52,7 @@ internal enum AuthEndpoint: RailsAPIEndpoint {
                 "email": email,
                 "gender": gender,
                 "password": password,
-                "password_confirmation": passwordConfirmation
+                "password_confirmation": password
             ]
             return ["user": parameters]
         }

@@ -9,24 +9,24 @@ import Foundation
 import UIKit
 
 extension UIStackView {
+  
+  convenience init(
+    orientation: NSLayoutConstraint.Axis = .vertical,
+    distribution: Distribution = .equalSpacing,
+    spacing: CGFloat = UI.StackView.defaultSpacing
+  ) {
+    self.init()
     
-    convenience init(
-        orientation: NSLayoutConstraint.Axis = .vertical,
-        distribution: Distribution = .equalSpacing,
-        spacing: CGFloat = UI.StackView.defaultSpacing
-    ) {
-        self.init()
-        
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        self.axis = orientation
-        self.distribution = distribution
-        self.spacing = spacing
-    }
+    translatesAutoresizingMaskIntoConstraints = false
     
-    func addArrangedSubviews(_ subviews: [UIView]) {
-        for subview in subviews {
-            addArrangedSubview(subview)
-        }
+    self.axis = orientation
+    self.distribution = distribution
+    self.spacing = spacing
+  }
+  
+  func addArrangedSubviews(_ subviews: [UIView]) {
+    for subview in subviews {
+      addArrangedSubview(subview)
     }
+  }
 }
