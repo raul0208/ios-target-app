@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-ios-target-app-ios-target-appUITests/Pods-ios-target-app-ios-target-appUITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/RSSwiftNetworking/RSSwiftNetworking.framework
