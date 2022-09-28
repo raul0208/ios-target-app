@@ -8,12 +8,18 @@
 import Foundation
 
 extension String {
-
+  
   var localized: String {
     self.localize()
   }
-    
+  
   func localize(comment: String = "") -> String {
     NSLocalizedString(self, comment: comment)
+  }
+  
+  func isEmailFormatted() -> Bool {
+    let emailRegex = "[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@([A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?"
+    let predicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+    return predicate.evaluate(with: self)
   }
 }

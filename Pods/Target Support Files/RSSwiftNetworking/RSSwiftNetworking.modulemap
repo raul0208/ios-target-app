@@ -1,0 +1,6 @@
+framework module RSSwiftNetworking {
+  umbrella header "RSSwiftNetworking-umbrella.h"
+
+  export *
+  module * { export * }
+}
