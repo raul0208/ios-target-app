@@ -5,6 +5,7 @@
 //  Created by Raul Piñeres Carrera on 8/09/22.
 //
 
+import Combine
 import UIKit
 
 class SignInViewController: UIViewController {
@@ -41,6 +42,12 @@ class SignInViewController: UIViewController {
     selector: #selector(formEditingChange),
     placeholder: "sign_in_password_placeholder".localized,
     isPassword: true
+  )
+  
+  private lazy var credentialsErrorLabel = UILabel(
+    text: "sign_in_error_label".localized,
+    textColor: .errorColor,
+    size: .small
   )
   
   private lazy var signInButton = UIButton(
@@ -86,6 +93,8 @@ class SignInViewController: UIViewController {
   init(viewModel: SignInViewModel) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
+    
+    setupSubscribers()
   }
   
   @available(*, unavailable)
@@ -104,11 +113,40 @@ class SignInViewController: UIViewController {
     navigationController?.setNavigationBarHidden(true, animated: animated)
   }
   
+  // MARK: - Subscribers
+  private var subscribers: Set<AnyCancellable> = []
+  
+  private func setupSubscribers() {
+    viewModel.statePublisher
+      .receive(on: RunLoop.main)
+      .sink { [weak self] state in
+        self?.setViewsStatus(state: state)
+      }.store(in: &subscribers)
+  }
+  
+  private func setViewsStatus(state: AuthViewModelState) {
+    switch state {
+    case .loggedIn: break
+      // TODO: add action
+    case .network(state: let state):
+      switch state {
+      case .idle: break
+        // TODO: add action
+      case .loading: break
+        // TODO: add action
+      case .error(_):
+        setErrorStatusToViews()
+      }
+    }
+  }
+  
+  // MARK: - Views configurations
   private func setViews() {
     view.addSubviews([ovalsImageView, scrollView])
     view.backgroundColor = .white
     scrollView.addSubview(stackView)
     lineView.setToLineView()
+    credentialsErrorLabel.isHidden = true
     
     setContainerLayouts()
   }
@@ -128,6 +166,7 @@ class SignInViewController: UIViewController {
       emailField,
       passwordLabel,
       passwordField,
+      credentialsErrorLabel,
       signInButton,
       forgotPasswordButton,
       connectFacebookButton,
@@ -141,7 +180,15 @@ class SignInViewController: UIViewController {
     ])
   }
   
-  // HANDLE NAVIGATION AND ACTIONS
+  private func setErrorStatusToViews() {
+    credentialsErrorLabel.isHidden = false
+    emailField.layer.borderColor = UIColor.errorColor.cgColor
+    emailField.layer.borderWidth = UI.TextField.errorBorderWidth
+    passwordField.layer.borderColor = UIColor.errorColor.cgColor
+    passwordField.layer.borderWidth = UI.TextField.errorBorderWidth
+  }
+  
+  // MARK: - Navigation and Actions
   @objc func signInButtonTapped() {
     viewModel.signIn()
   }

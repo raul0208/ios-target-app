@@ -18,6 +18,7 @@ struct UI {
     static let height: CGFloat = 55.0
     static let width: CGFloat = 80.0
     static let spacing: CGFloat = 8.0
+    static let errorBorderWidth: CGFloat = 2.0
   }
   
   enum Button {
