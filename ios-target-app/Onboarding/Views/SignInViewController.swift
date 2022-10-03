@@ -122,6 +122,12 @@ class SignInViewController: UIViewController {
       .sink { [weak self] state in
         self?.setViewsStatus(state: state)
       }.store(in: &subscribers)
+    
+    viewModel.isSignInEnabledPublisher
+      .receive(on: RunLoop.main)
+      .sink { [weak self] isButtonEnabled in
+        self?.setSignInButton(enabled: isButtonEnabled)
+      }.store(in: &subscribers)
   }
   
   private func setViewsStatus(state: AuthViewModelState) {
@@ -188,6 +194,11 @@ class SignInViewController: UIViewController {
     passwordField.layer.borderWidth = UI.TextField.errorBorderWidth
   }
   
+  func setSignInButton(enabled: Bool) {
+    signInButton.alpha = enabled ? UI.Button.enabledAlpha : UI.Button.disabledAlpha
+    signInButton.isEnabled = enabled
+  }
+  
   // MARK: - Navigation and Actions
   @objc func signInButtonTapped() {
     viewModel.signIn()
@@ -202,8 +213,10 @@ class SignInViewController: UIViewController {
     switch sender {
     case emailField:
       viewModel.fieldChanged(field: .email, value: newValue)
+      viewModel.setSignInButtonStatus()
     case passwordField:
       viewModel.fieldChanged(field: .password, value: newValue)
+      viewModel.setSignInButtonStatus()
     default: break
     }
   }

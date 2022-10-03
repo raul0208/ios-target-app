@@ -25,16 +25,13 @@ class SignInViewModel {
     self.authServices = authServices
   }
   
-  /*
-   private var state: AuthViewModelState = .network(state: .idle) {
-    didSet {
-      delegate?.didUpdateState(to: state)
-    }
-  } */
-  
   @Published private var state: AuthViewModelState = .network(state: .idle)
   
   var statePublisher: Published<AuthViewModelState>.Publisher { $state }
+  
+  @Published private var isSignInEnabled: Bool = false
+  
+  var isSignInEnabledPublisher: Published<Bool>.Publisher { $isSignInEnabled }
   
   weak var delegate: SignInViewModelDelegate?
   
@@ -79,5 +76,9 @@ class SignInViewModel {
     case .password:
       self.password = value
     }
+  }
+  
+  func setSignInButtonStatus() {
+    self.isSignInEnabled = hasValidCredentials
   }
 }
