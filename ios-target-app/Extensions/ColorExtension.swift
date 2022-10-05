@@ -8,5 +8,5 @@
 import UIKit
 
 extension UIColor {
-    static let errorColor = UIColor(named: "errorColor")!
+    static let error = UIColor(named: "errorColor")!
 }

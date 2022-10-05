@@ -46,7 +46,7 @@ class SignInViewController: UIViewController {
   
   private lazy var credentialsErrorLabel = UILabel(
     text: "sign_in_error_label".localized,
-    textColor: .errorColor,
+    textColor: .error,
     size: .small
   )
   
@@ -120,7 +120,7 @@ class SignInViewController: UIViewController {
     viewModel.statePublisher
       .receive(on: RunLoop.main)
       .sink { [weak self] state in
-        self?.setViewsStatus(state: state)
+        self?.setViewsState(state: state)
       }.store(in: &subscribers)
     
     viewModel.isSignInEnabledPublisher
@@ -130,7 +130,7 @@ class SignInViewController: UIViewController {
       }.store(in: &subscribers)
   }
   
-  private func setViewsStatus(state: AuthViewModelState) {
+  private func setViewsState(state: AuthViewModelState) {
     switch state {
     case .loggedIn: break
       // TODO: add action
@@ -141,7 +141,7 @@ class SignInViewController: UIViewController {
       case .loading: break
         // TODO: add action
       case .error(_):
-        setErrorStatusToViews()
+        setErrorStateToViews()
       }
     }
   }
@@ -186,11 +186,11 @@ class SignInViewController: UIViewController {
     ])
   }
   
-  private func setErrorStatusToViews() {
+  private func setErrorStateToViews() {
     credentialsErrorLabel.isHidden = false
-    emailField.layer.borderColor = UIColor.errorColor.cgColor
+    emailField.layer.borderColor = UIColor.error.cgColor
     emailField.layer.borderWidth = UI.TextField.errorBorderWidth
-    passwordField.layer.borderColor = UIColor.errorColor.cgColor
+    passwordField.layer.borderColor = UIColor.error.cgColor
     passwordField.layer.borderWidth = UI.TextField.errorBorderWidth
   }
   
@@ -213,10 +213,8 @@ class SignInViewController: UIViewController {
     switch sender {
     case emailField:
       viewModel.fieldChanged(field: .email, value: newValue)
-      viewModel.setSignInButtonStatus()
     case passwordField:
       viewModel.fieldChanged(field: .password, value: newValue)
-      viewModel.setSignInButtonStatus()
     default: break
     }
   }

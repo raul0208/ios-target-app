@@ -73,12 +73,10 @@ class SignInViewModel {
     switch field {
     case .email:
       self.email = value
+      self.isSignInEnabled = hasValidCredentials
     case .password:
       self.password = value
+      self.isSignInEnabled = hasValidCredentials
     }
-  }
-  
-  func setSignInButtonStatus() {
-    self.isSignInEnabled = hasValidCredentials
   }
 }
