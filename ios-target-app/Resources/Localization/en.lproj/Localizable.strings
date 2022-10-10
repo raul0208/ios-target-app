@@ -25,3 +25,4 @@
 "sign_in_button" = "SIGN IN";
 "sign_in_forgot_password" = "Forgot your password?";
 "sign_in_connect_facebook" = "CONNECT WITH FACEBOOK";
+"sign_in_error_label" = "This email and password don’t match";

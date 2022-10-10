@@ -25,11 +25,13 @@ class SignInViewModel {
     self.authServices = authServices
   }
   
-  private var state: AuthViewModelState = .network(state: .idle) {
-    didSet {
-      delegate?.didUpdateState(to: state)
-    }
-  }
+  @Published private var state: AuthViewModelState = .network(state: .idle)
+  
+  var statePublisher: Published<AuthViewModelState>.Publisher { $state }
+  
+  @Published private var isSignInEnabled: Bool = false
+  
+  var isSignInEnabledPublisher: Published<Bool>.Publisher { $isSignInEnabled }
   
   weak var delegate: SignInViewModelDelegate?
   
@@ -45,7 +47,7 @@ class SignInViewModel {
     }
   }
   
-  var hasValidData: Bool {
+  var hasValidCredentials: Bool {
     email.isEmailFormatted() && !password.isEmpty
   }
   
@@ -71,9 +73,10 @@ class SignInViewModel {
     switch field {
     case .email:
       self.email = value
+      self.isSignInEnabled = hasValidCredentials
     case .password:
       self.password = value
+      self.isSignInEnabled = hasValidCredentials
     }
   }
 }
-

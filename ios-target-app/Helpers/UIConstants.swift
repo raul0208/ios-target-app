@@ -18,6 +18,7 @@ struct UI {
     static let height: CGFloat = 55.0
     static let width: CGFloat = 80.0
     static let spacing: CGFloat = 8.0
+    static let errorBorderWidth: CGFloat = 2.0
   }
   
   enum Button {
@@ -25,6 +26,8 @@ struct UI {
     static let height: CGFloat = 55.0
     static let width: CGFloat = 128.0
     static let spacing: CGFloat = 20.0
+    static let enabledAlpha: CGFloat = 1
+    static let disabledAlpha: CGFloat = 0.5
   }
   
   enum OvalImageView {
