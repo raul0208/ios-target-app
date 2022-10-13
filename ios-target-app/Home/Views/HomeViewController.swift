@@ -7,17 +7,32 @@
 
 import UIKit
 import MapKit
+import Combine
 
-class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class HomeViewController: UIViewController, MKMapViewDelegate {
   
   private lazy var mapView: MKMapView = {
     let map = MKMapView()
     map.overrideUserInterfaceStyle = .dark
+    map.isZoomEnabled = true
+    map.isScrollEnabled = true
     return map
   }()
   
-  private var locationManager: CLLocationManager!
-  private var currentLocation: CLLocation?
+  private let locationManager: LocationManager
+  private var subscribers = Set<AnyCancellable>()
+  
+  init(locationManager: LocationManager) {
+    self.locationManager = locationManager
+    super.init(nibName: nil, bundle: nil)
+    
+    setupSubscribers()
+  }
+  
+  @available(*, unavailable)
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -25,12 +40,12 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     setDefaultScreenConfigs()
     setNavigationBar()
     setMapConstraints()
-    setMapConfig()
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     navigationController?.setNavigationBarHidden(false, animated: animated)
+    mapView.delegate = self
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -66,31 +81,22 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     navigationItem.leftBarButtonItem = profileButtonIcon
     navigationItem.rightBarButtonItem = chatButtonIcon
   }
-  
-  private func setMapConfig() {
-    mapView.delegate = self
-    
-    locationManager = CLLocationManager()
-    locationManager.delegate = self
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    
-    // Check for Location Services
-    if CLLocationManager.locationServicesEnabled() {
-      locationManager.requestWhenInUseAuthorization()
-      locationManager.startUpdatingLocation()
-    }
+  private func setupSubscribers() {
+    locationManager
+      .$lastLocation
+      .compactMap { $0 }
+      .sink { [weak self] location in
+        self?.setMapConfig(withLocation: location)
+      }.store(in: &subscribers)
   }
   
-  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    defer { currentLocation = locations.last }
-    
-    if currentLocation == nil {
-      // Zoom to user location
-      if let userLocation = locations.last {
-        let viewRegion = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 2000, longitudinalMeters: 2000)
-        mapView.setRegion(viewRegion, animated: false)
-      }
-    }
+  private func setMapConfig(withLocation location: CLLocation) {
+    let viewRegion = MKCoordinateRegion(
+      center: location.coordinate,
+      latitudinalMeters: UI.MapRegion.latitudinalMeters,
+      longitudinalMeters: UI.MapRegion.longitudinalMeters
+    )
+    mapView.setRegion(viewRegion, animated: false)
   }
   
   private func setMapConstraints() {

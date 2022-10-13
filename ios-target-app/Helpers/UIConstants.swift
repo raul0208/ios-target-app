@@ -47,4 +47,9 @@ struct UI {
     static let heightSmallMultiplier: CGFloat = 0.14
     static let heightBigMultiplier: CGFloat = 0.2
   }
+  
+  enum MapRegion {
+    static let latitudinalMeters: CGFloat = 2000
+    static let longitudinalMeters: CGFloat = 2000
+  }
 }
