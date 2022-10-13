@@ -11,7 +11,7 @@
 "email_label" = "EMAIL";
 "password_label" = "PASSWORD";
 
-//SIGN UP SCREEN
+// SIGN UP SCREEN
 "sign_up_button" = "SIGN UP";
 "sign_up_name_label" = "NAME";
 "sign_up_password_placeholder" = "MIN. 6 CHARACTERS LONG";
@@ -19,10 +19,13 @@
 "sign_up_gender_label" = "GENDER";
 "sign_up_gender_placeholder" = "SELECT YOUR GENDER";
 
-//SIGN IN SCREEN
+// SIGN IN SCREEN
 "sign_in_email_placeholder" = "Type your email";
 "sign_in_password_placeholder" = "Type your password";
 "sign_in_button" = "SIGN IN";
 "sign_in_forgot_password" = "Forgot your password?";
 "sign_in_connect_facebook" = "CONNECT WITH FACEBOOK";
 "sign_in_error_label" = "This email and password don’t match";
+
+// HOME SCREEN
+"home_title" = "Target Points";
