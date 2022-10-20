@@ -14,7 +14,7 @@ enum HomeRoutes: Route {
   var screen: UIViewController {
     switch self {
     case .home:
-      return HomeViewController(locationManager: LocationManager.instance)
+      return HomeViewController(viewModel: HomeViewModel())
     }
   }
 }

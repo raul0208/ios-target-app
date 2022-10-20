@@ -8,10 +8,10 @@
 import UIKit
 import CoreLocation
 
-class LocationManager: NSObject, CLLocationManagerDelegate {
+final class LocationManager: NSObject, CLLocationManagerDelegate {
   
   static let instance = LocationManager()
-  private var locationManager: CLLocationManager = CLLocationManager()
+  private let locationManager: CLLocationManager = CLLocationManager()
   
   @Published var lastLocation: CLLocation?
   
@@ -19,10 +19,25 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     super.init()
     locationManager.delegate = self
     locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    
-    if CLLocationManager.locationServicesEnabled() { // Check for Location Services
-      locationManager.requestWhenInUseAuthorization()
-      locationManager.startUpdatingLocation()
+    locationManager.requestAlwaysAuthorization()
+    locationManager.startUpdatingLocation()
+  }
+  
+  func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+    if CLLocationManager.locationServicesEnabled() {
+      switch manager.authorizationStatus {
+      case .authorizedAlways, .authorizedWhenInUse:
+        locationManager.startUpdatingLocation()
+        break
+      case .restricted, .denied:
+        locationManager.stopUpdatingLocation()
+        break
+      case .notDetermined:
+        manager.requestWhenInUseAuthorization()
+        break
+      default:
+        break
+      }
     }
   }
   

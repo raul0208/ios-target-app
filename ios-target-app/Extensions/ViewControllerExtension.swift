@@ -13,5 +13,4 @@ extension UIViewController {
     func setDefaultScreenConfigs() {
       view.backgroundColor = .white
     }
-    
 }

@@ -11,6 +11,8 @@ import Combine
 
 class HomeViewController: UIViewController, MKMapViewDelegate {
   
+  private let viewModel: HomeViewModel
+  
   private lazy var mapView: MKMapView = {
     let map = MKMapView()
     map.overrideUserInterfaceStyle = .dark
@@ -19,11 +21,11 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
     return map
   }()
   
-  private let locationManager: LocationManager
+  // private let locationManager: LocationManager
   private var subscribers = Set<AnyCancellable>()
   
-  init(locationManager: LocationManager) {
-    self.locationManager = locationManager
+  init(viewModel: HomeViewModel) {
+    self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
     
     setupSubscribers()
@@ -81,10 +83,10 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
     navigationItem.leftBarButtonItem = profileButtonIcon
     navigationItem.rightBarButtonItem = chatButtonIcon
   }
+  
   private func setupSubscribers() {
-    locationManager
-      .$lastLocation
-      .compactMap { $0 }
+    viewModel.currentLocationPublisher
+      .receive(on: RunLoop.main)
       .sink { [weak self] location in
         self?.setMapConfig(withLocation: location)
       }.store(in: &subscribers)
@@ -97,6 +99,10 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
       longitudinalMeters: UI.MapRegion.longitudinalMeters
     )
     mapView.setRegion(viewRegion, animated: false)
+    
+    let annotation = MKPointAnnotation()
+    annotation.coordinate = location.coordinate
+    mapView.addAnnotation(annotation)
   }
   
   private func setMapConstraints() {
@@ -104,9 +110,11 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
     
     mapView.translatesAutoresizingMaskIntoConstraints = false
     
-    mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-    mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-    mapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-    mapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+    NSLayoutConstraint.activate([
+      mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+      mapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+      mapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+    ])
   }
 }
