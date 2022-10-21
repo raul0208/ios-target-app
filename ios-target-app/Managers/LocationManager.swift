@@ -13,7 +13,7 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
   static let instance = LocationManager()
   private let locationManager: CLLocationManager = CLLocationManager()
   
-  @Published var lastLocation: CLLocation?
+  @Published var lastLocation: CLLocation = CLLocation()
   
   override init() {
     super.init()
@@ -24,20 +24,18 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
   }
   
   func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-    if CLLocationManager.locationServicesEnabled() {
-      switch manager.authorizationStatus {
-      case .authorizedAlways, .authorizedWhenInUse:
-        locationManager.startUpdatingLocation()
-        break
-      case .restricted, .denied:
-        locationManager.stopUpdatingLocation()
-        break
-      case .notDetermined:
-        manager.requestWhenInUseAuthorization()
-        break
-      default:
-        break
-      }
+    guard CLLocationManager.locationServicesEnabled() else {
+      return
+    }
+    switch manager.authorizationStatus {
+    case .authorizedAlways, .authorizedWhenInUse:
+      locationManager.startUpdatingLocation()
+    case .restricted, .denied:
+      locationManager.stopUpdatingLocation()
+    case .notDetermined:
+      manager.requestWhenInUseAuthorization()
+    default:
+      break
     }
   }
   

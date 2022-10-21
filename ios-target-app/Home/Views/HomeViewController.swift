@@ -21,8 +21,7 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
     return map
   }()
   
-  // private let locationManager: LocationManager
-  private var subscribers = Set<AnyCancellable>()
+  private var cancellableSubscriptions = Set<AnyCancellable>()
   
   init(viewModel: HomeViewModel) {
     self.viewModel = viewModel
@@ -89,7 +88,7 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
       .receive(on: RunLoop.main)
       .sink { [weak self] location in
         self?.setMapConfig(withLocation: location)
-      }.store(in: &subscribers)
+      }.store(in: &cancellableSubscriptions)
   }
   
   private func setMapConfig(withLocation location: CLLocation) {
