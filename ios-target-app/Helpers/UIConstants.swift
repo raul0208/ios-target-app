@@ -52,4 +52,11 @@ struct UI {
     static let latitudinalMeters: CGFloat = 2000
     static let longitudinalMeters: CGFloat = 2000
   }
+  
+  enum BottomSheet {
+    static let cornerRadius: CGFloat = 20
+    static let shadowRadius: CGFloat = 20
+    static let defaultTopAnchor: CGFloat = 15
+    static let height: CGFloat = 100
+  }
 }

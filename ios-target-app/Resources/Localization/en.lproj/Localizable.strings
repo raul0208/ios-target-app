@@ -29,3 +29,4 @@
 
 // HOME SCREEN
 "home_title" = "Target Points";
+"home_create_target_button_label" = "CREATE NEW TARGET";
