@@ -27,6 +27,7 @@
 		7EAFD83C28DC8C96002B4046 /* NetworkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAFD83B28DC8C96002B4046 /* NetworkState.swift */; };
 		7EAFD83E28DC90A9002B4046 /* AuthViewModelStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAFD83D28DC90A9002B4046 /* AuthViewModelStateDelegate.swift */; };
 		7EAFD84428DCBC14002B4046 /* SessionHeadersProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAFD84328DCBC14002B4046 /* SessionHeadersProvider.swift */; };
+		7EC1F1AD2908493300043613 /* SaveTargetBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC1F1AC2908493300043613 /* SaveTargetBottomSheetViewController.swift */; };
 		7EC6268A28E732BE00554CAA /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC6268928E732BE00554CAA /* ColorExtension.swift */; };
 		7ECD798C28FF1D5900D070A6 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECD798B28FF1D5900D070A6 /* HomeViewModel.swift */; };
 		7EE6300A28DDB9A300858594 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6300928DDB9A300858594 /* Session.swift */; };
@@ -95,6 +96,7 @@
 		7EAFD83B28DC8C96002B4046 /* NetworkState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkState.swift; sourceTree = "<group>"; };
 		7EAFD83D28DC90A9002B4046 /* AuthViewModelStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModelStateDelegate.swift; sourceTree = "<group>"; };
 		7EAFD84328DCBC14002B4046 /* SessionHeadersProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionHeadersProvider.swift; sourceTree = "<group>"; };
+		7EC1F1AC2908493300043613 /* SaveTargetBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveTargetBottomSheetViewController.swift; sourceTree = "<group>"; };
 		7EC6268928E732BE00554CAA /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		7ECD798B28FF1D5900D070A6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		7EE6300928DDB9A300858594 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 			children = (
 				7EE6301F28E4BD5900858594 /* HomeViewController.swift */,
 				7E2B56A329073DF6001DC768 /* CreateTargetBottomSheetView.swift */,
+				7EC1F1AC2908493300043613 /* SaveTargetBottomSheetViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -706,6 +709,7 @@
 				7EEDF2AD28CBE320009BE3A5 /* ButtonExtension.swift in Sources */,
 				7EE6302728E4CF7700858594 /* SignInViewModel.swift in Sources */,
 				7EEDF2C428D23F48009BE3A5 /* OnboardingRoutes.swift in Sources */,
+				7EC1F1AD2908493300043613 /* SaveTargetBottomSheetViewController.swift in Sources */,
 				7EE6300C28DDBB6100858594 /* SignUpViewModel.swift in Sources */,
 				7EEDF2A828CB9D8C009BE3A5 /* UIConstants.swift in Sources */,
 				7EE6301528DDCAD800858594 /* APIClient+Application.swift in Sources */,

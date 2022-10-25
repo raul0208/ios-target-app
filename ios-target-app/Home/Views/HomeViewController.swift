@@ -22,9 +22,10 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
   }()
   
   private lazy var createTargetBottomSheetView: UIView = {
-    let target = CreateTargetBottomSheetView()
-    target.translatesAutoresizingMaskIntoConstraints = false
-    return target
+    let bottomSheet = CreateTargetBottomSheetView()
+    bottomSheet.translatesAutoresizingMaskIntoConstraints = false
+    bottomSheet.delegate = self
+    return bottomSheet
   }()
   
   private var cancellableSubscriptions = Set<AnyCancellable>()
@@ -125,5 +126,18 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
       createTargetBottomSheetView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
       createTargetBottomSheetView.heightAnchor.constraint(equalToConstant: UI.BottomSheet.height)
     ])
+  }
+}
+
+extension HomeViewController: BottomSheetDelegate {
+  func createTargetButtonTapped() {
+    let saveTargetBottomSheetViewController = SaveTargetBottomSheetViewController()
+    let navigationController = UINavigationController(rootViewController: saveTargetBottomSheetViewController)
+    navigationController.modalPresentationStyle = .pageSheet
+    
+    if let sheet = navigationController.sheetPresentationController {
+      sheet.detents = [.medium()]
+    }
+    present(navigationController, animated: true, completion: nil)
   }
 }
