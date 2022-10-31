@@ -51,17 +51,17 @@ class SaveTargetBottomSheetViewController: UIViewController {
     configureViews()
   }
   
-  func setBottomSheetUIConfigs() {
-    view.layer.cornerRadius = UI.BottomSheet.cornerRadius
-    view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-    view.layer.shadowColor = UIColor.black.cgColor
-    view.layer.shadowRadius = UI.BottomSheet.shadowRadius
-    view.layer.shadowOffset = .init(width: 0, height: UI.BottomSheet.shadowHeightOffset)
-    view.layer.shadowOpacity = UI.BottomSheet.shadowOpacity
-    view.backgroundColor = .white
+  private func setBottomSheetUIConfigs() {
+    view.setRoundedCornersConfig(
+      cornerRadius: UI.BottomSheet.cornerRadius,
+      maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner],
+      shadowRadius: UI.BottomSheet.shadowRadius,
+      shadowOffset: .init(width: 0, height: UI.BottomSheet.shadowHeightOffset),
+      shadowOpacity: UI.BottomSheet.shadowOpacity
+    )
   }
   
-  func configureViews() {
+  private func configureViews() {
     areaField.keyboardType = .decimalPad
     view.addSubviews([
       areaLabel,
@@ -73,10 +73,7 @@ class SaveTargetBottomSheetViewController: UIViewController {
       saveButton
     ])
     
-    [areaField,
-     targetTitleField,
-     topicField,
-    ].forEach {
+    [areaField, targetTitleField, topicField].forEach {
       $0.attachHorizontally(
         to: view,
         leadingMargin: UI.Defaults.margin,
@@ -90,6 +87,10 @@ class SaveTargetBottomSheetViewController: UIViewController {
       trailingMargin: UI.Button.width
     )
     
+    setConstraints()
+  }
+  
+  private func setConstraints() {
     NSLayoutConstraint.activate([
       areaLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       areaLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UI.Defaults.margin),

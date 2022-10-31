@@ -28,27 +28,31 @@ final class CreateTargetBottomSheetView: UIView {
   init() {
     super.init(frame: .zero)
     
-    addSubviews([
-      targetImageView,
-      createTargetButton
-    ])
-    
-    layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-    layer.cornerRadius = UI.BottomSheet.cornerRadius
-    layer.shadowRadius = UI.BottomSheet.shadowRadius
-    backgroundColor = .white
+    addSubviews([targetImageView, createTargetButton])
     
     targetImageView.centerHorizontally(with: self)
     createTargetButton.centerHorizontally(with: self)
     
-    NSLayoutConstraint.activate([
-      targetImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: UI.BottomSheet.defaultTopAnchor),
-      createTargetButton.topAnchor.constraint(equalTo: targetImageView.bottomAnchor)
-    ])
+    setUIConfig()
+    setConstraints()
   }
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  private func setUIConfig() {
+    layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+    layer.cornerRadius = UI.BottomSheet.cornerRadius
+    layer.shadowRadius = UI.BottomSheet.shadowRadius
+    backgroundColor = .white
+  }
+  
+  private func setConstraints() {
+    NSLayoutConstraint.activate([
+      targetImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: UI.BottomSheet.defaultTopAnchor),
+      createTargetButton.topAnchor.constraint(equalTo: targetImageView.bottomAnchor)
+    ])
   }
   
   // MARK: - Actions
