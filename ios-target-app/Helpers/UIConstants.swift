@@ -21,6 +21,10 @@ struct UI {
     static let errorBorderWidth: CGFloat = 2.0
   }
   
+  enum Label {
+    static let spacing: CGFloat = 8.0
+  }
+  
   enum Button {
     static let cornerRadius: CGFloat = 0.0
     static let height: CGFloat = 55.0
@@ -51,5 +55,14 @@ struct UI {
   enum MapRegion {
     static let latitudinalMeters: CGFloat = 2000
     static let longitudinalMeters: CGFloat = 2000
+  }
+  
+  enum BottomSheet {
+    static let cornerRadius: CGFloat = 20
+    static let shadowRadius: CGFloat = 20
+    static let defaultTopAnchor: CGFloat = 15
+    static let height: CGFloat = 100
+    static let shadowHeightOffset: CGFloat = -2
+    static let shadowOpacity: Float = 0.5
   }
 }

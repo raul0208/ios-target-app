@@ -21,6 +21,13 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
     return map
   }()
   
+  private lazy var createTargetBottomSheetView: UIView = {
+    let bottomSheet = CreateTargetBottomSheetView()
+    bottomSheet.translatesAutoresizingMaskIntoConstraints = false
+    bottomSheet.delegate = self
+    return bottomSheet
+  }()
+  
   private var cancellableSubscriptions = Set<AnyCancellable>()
   
   init(viewModel: HomeViewModel) {
@@ -105,15 +112,32 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
   }
   
   private func setMapConstraints() {
-    view.addSubview(mapView)
+    view.addSubviews([mapView, createTargetBottomSheetView])
     
     mapView.translatesAutoresizingMaskIntoConstraints = false
+    
+    createTargetBottomSheetView.attachHorizontally(to: view, leadingMargin: 0, trailingMargin: 0)
     
     NSLayoutConstraint.activate([
       mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
       mapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-      mapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+      mapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+      createTargetBottomSheetView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+      createTargetBottomSheetView.heightAnchor.constraint(equalToConstant: UI.BottomSheet.height)
     ])
+  }
+}
+
+extension HomeViewController: BottomSheetDelegate {
+  func createTargetButtonTapped() {
+    let saveTargetBottomSheetViewController = SaveTargetBottomSheetViewController()
+    let navigationController = UINavigationController(rootViewController: saveTargetBottomSheetViewController)
+    navigationController.modalPresentationStyle = .pageSheet
+    
+    if let sheet = navigationController.sheetPresentationController {
+      sheet.detents = [.medium()]
+    }
+    present(navigationController, animated: true, completion: nil)
   }
 }
