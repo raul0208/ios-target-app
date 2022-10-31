@@ -69,4 +69,22 @@ extension UIView {
     self.layer.borderColor = borderColor
     self.layer.borderWidth = borderWidth
   }
+  
+  func setRoundedCornersConfig(
+    backgroundColor: UIColor? = .white,
+    cornerRadius: CGFloat,
+    maskedCorners: CACornerMask,
+    shadowColor: CGColor? = UIColor.black.cgColor,
+    shadowRadius: CGFloat,
+    shadowOffset: CGSize,
+    shadowOpacity: Float
+  ) {
+    self.backgroundColor = backgroundColor
+    self.layer.cornerRadius = cornerRadius
+    self.layer.maskedCorners = maskedCorners
+    self.layer.shadowColor = shadowColor
+    self.layer.shadowRadius = shadowRadius
+    self.layer.shadowOffset = shadowOffset
+    self.layer.shadowOpacity = shadowOpacity
+  }
 }
