@@ -9,6 +9,8 @@ import UIKit
 
 class SaveTargetBottomSheetViewController: UIViewController {
   
+  private let viewModel: TargetViewModel
+  
   private lazy var areaLabel = UILabel(
     text: "home_area_label".localized,
     size: .normal
@@ -41,8 +43,19 @@ class SaveTargetBottomSheetViewController: UIViewController {
   
   private lazy var saveButton = UIButton(
     text: "home_save_button_label".localized,
-    target: self
+    target: self,
+    action: #selector(saveTargetButtonTapped)
   )
+  
+  init(viewModel: TargetViewModel) {
+    self.viewModel = viewModel
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  @available(*, unavailable)
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -102,5 +115,11 @@ class SaveTargetBottomSheetViewController: UIViewController {
       topicField.topAnchor.constraint(equalTo: topicLabel.bottomAnchor, constant: UI.TextField.spacing),
       saveButton.topAnchor.constraint(equalTo: topicField.bottomAnchor, constant: UI.Defaults.margin),
     ])
+  }
+  
+  // MARK: - Actions
+  @objc
+  func saveTargetButtonTapped() {
+    viewModel.createTarget()
   }
 }

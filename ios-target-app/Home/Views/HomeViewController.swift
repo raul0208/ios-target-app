@@ -131,7 +131,7 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
 
 extension HomeViewController: BottomSheetDelegate {
   func createTargetButtonTapped() {
-    let saveTargetBottomSheetViewController = SaveTargetBottomSheetViewController()
+    let saveTargetBottomSheetViewController = SaveTargetBottomSheetViewController(viewModel: TargetViewModel())
     let navigationController = UINavigationController(rootViewController: saveTargetBottomSheetViewController)
     navigationController.modalPresentationStyle = .pageSheet
     

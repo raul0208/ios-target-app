@@ -34,6 +34,8 @@
 		7EC1F1B8291141AA00043613 /* TargetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC1F1B7291141AA00043613 /* TargetResponse.swift */; };
 		7EC1F1BA2911426E00043613 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC1F1B92911426E00043613 /* Avatar.swift */; };
 		7EC1F1BC29114BA300043613 /* TargetServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC1F1BB29114BA300043613 /* TargetServices.swift */; };
+		7EC1F1BE291161D400043613 /* TargetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC1F1BD291161D400043613 /* TargetViewModel.swift */; };
+		7EC1F1C0291174F900043613 /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC1F1BF291174F900043613 /* UserDataManager.swift */; };
 		7EC6268A28E732BE00554CAA /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC6268928E732BE00554CAA /* ColorExtension.swift */; };
 		7ECD798C28FF1D5900D070A6 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECD798B28FF1D5900D070A6 /* HomeViewModel.swift */; };
 		7EE6300A28DDB9A300858594 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6300928DDB9A300858594 /* Session.swift */; };
@@ -109,6 +111,8 @@
 		7EC1F1B7291141AA00043613 /* TargetResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetResponse.swift; sourceTree = "<group>"; };
 		7EC1F1B92911426E00043613 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		7EC1F1BB29114BA300043613 /* TargetServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetServices.swift; sourceTree = "<group>"; };
+		7EC1F1BD291161D400043613 /* TargetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetViewModel.swift; sourceTree = "<group>"; };
+		7EC1F1BF291174F900043613 /* UserDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataManager.swift; sourceTree = "<group>"; };
 		7EC6268928E732BE00554CAA /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		7ECD798B28FF1D5900D070A6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		7EE6300928DDB9A300858594 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -326,6 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				7ECD798B28FF1D5900D070A6 /* HomeViewModel.swift */,
+				7EC1F1BD291161D400043613 /* TargetViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -362,6 +367,7 @@
 			children = (
 				7EE6301728DDCBB800858594 /* SessionManager.swift */,
 				7E43AD5628F891FA005BD986 /* LocationManager.swift */,
+				7EC1F1BF291174F900043613 /* UserDataManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -733,6 +739,7 @@
 				7EC1F1B129113C8600043613 /* TargetEndpoint.swift in Sources */,
 				7EC1F1BC29114BA300043613 /* TargetServices.swift in Sources */,
 				7EAFD84428DCBC14002B4046 /* SessionHeadersProvider.swift in Sources */,
+				7EC1F1C0291174F900043613 /* UserDataManager.swift in Sources */,
 				7EE6300F28DDBEC500858594 /* AuthenticationServices.swift in Sources */,
 				7E9FB04828CA904A004D2020 /* SignInViewController.swift in Sources */,
 				7E2B56A429073DF6001DC768 /* CreateTargetBottomSheetView.swift in Sources */,
@@ -745,6 +752,7 @@
 				7EEDF2A828CB9D8C009BE3A5 /* UIConstants.swift in Sources */,
 				7EC1F1BA2911426E00043613 /* Avatar.swift in Sources */,
 				7EE6301528DDCAD800858594 /* APIClient+Application.swift in Sources */,
+				7EC1F1BE291161D400043613 /* TargetViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
