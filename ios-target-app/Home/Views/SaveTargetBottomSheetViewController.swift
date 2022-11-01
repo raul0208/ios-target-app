@@ -48,7 +48,6 @@ class SaveTargetBottomSheetViewController: UIViewController {
     action: #selector(saveTargetButtonTapped)
   )
   
-<<<<<<< HEAD
   private var cancellables: Set<AnyCancellable> = []
   
   init(viewModel: TargetViewModel) {
@@ -56,11 +55,6 @@ class SaveTargetBottomSheetViewController: UIViewController {
     super.init(nibName: nil, bundle: nil)
     
     setupSubscribers()
-=======
-  init(viewModel: TargetViewModel) {
-    self.viewModel = viewModel
-    super.init(nibName: nil, bundle: nil)
->>>>>>> 23919550d04f3611c3581c13dfd7137a8548308b
   }
   
   @available(*, unavailable)
