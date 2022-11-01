@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class SaveTargetBottomSheetViewController: UIViewController {
   
@@ -47,9 +48,13 @@ class SaveTargetBottomSheetViewController: UIViewController {
     action: #selector(saveTargetButtonTapped)
   )
   
+  private var cancellables: Set<AnyCancellable> = []
+  
   init(viewModel: TargetViewModel) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
+    
+    setupSubscribers()
   }
   
   @available(*, unavailable)
@@ -62,6 +67,29 @@ class SaveTargetBottomSheetViewController: UIViewController {
     
     setBottomSheetUIConfigs()
     configureViews()
+  }
+  
+  private func setupSubscribers() {
+    viewModel.statePublisher
+      .sink { [weak self] state in
+        self?.setViewsState(state: state)
+      }.store(in: &cancellables)
+  }
+  
+  private func setViewsState(state: TargetViewModelState) {
+    switch state {
+    case .created:
+      self.dismiss(animated: true, completion: nil)
+    case .network(state: let state):
+      switch state {
+      case .idle: break
+        // TODO: add action
+      case .loading: break
+        // TODO: add action
+      case .error(_): break
+        // TODO: add action
+      }
+    }
   }
   
   private func setBottomSheetUIConfigs() {
@@ -105,7 +133,7 @@ class SaveTargetBottomSheetViewController: UIViewController {
   
   private func setConstraints() {
     NSLayoutConstraint.activate([
-      areaLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      areaLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: UI.BottomSheet.defaultTopAnchor),
       areaLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UI.Defaults.margin),
       areaField.topAnchor.constraint(equalTo: areaLabel.bottomAnchor, constant: UI.TextField.spacing),
       targetTitleLabel.topAnchor.constraint(equalTo: areaField.bottomAnchor, constant: UI.Label.spacing),

@@ -8,9 +8,7 @@
 import Foundation
 
 struct Avatar: Codable {
-  var originalUrl: String?
-  var normalUrl: String?
-  var smallThumbUrl: String?
+  let originalUrl, normalUrl, smallThumbUrl: String?
   
   private enum CodingKeys: String, CodingKey {
     case originalUrl = "original_url"

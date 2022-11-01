@@ -26,7 +26,7 @@ internal class TargetServices {
     longitude: Double,
     radius: Double,
     topicId: Int,
-    completion: @escaping (Result<Target, Error>) -> Void
+    completion: @escaping (Result<TargetRaw, Error>) -> Void
   ) {
     apiClient.request(
       endpoint: TargetEndpoint.createTarget(

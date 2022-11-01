@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum TargetViewModelState {
+  case created
+  case network(state: NetworkState)
+}
+
 final class TargetViewModel {
   
   private let targetServices: TargetServices
@@ -15,18 +20,13 @@ final class TargetViewModel {
     self.targetServices = targetServices
   }
   
-  enum TargetViewModelState {
-    case created
-    case network(state: NetworkState)
-  }
-  
   @Published private var state: TargetViewModelState = .network(state: .idle)
   var statePublisher: Published<TargetViewModelState>.Publisher { $state }
   
   //TODO: change request parameters to be dynamic
   private let title = "New Target"
   private let latitude = 41.390367
-  private let longitude = 2.1528576
+  private let longitude = 11.1528576
   private let radius = 27384.4
   private let topicId = 2
   
@@ -44,7 +44,6 @@ final class TargetViewModel {
       switch result {
       case .success:
         self.state = .created
-        AppNavigator.shared.navigate(to: HomeRoutes.home, with: .changeRoot)
       case .failure(let error):
         self.state = .network(state: .error(error.localizedDescription))
       }
