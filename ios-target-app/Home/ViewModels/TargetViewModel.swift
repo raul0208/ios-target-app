@@ -19,7 +19,7 @@ final class TargetViewModel {
   init(targetServices: TargetServices = TargetServices()) {
     self.targetServices = targetServices
   }
-  
+
   @Published private var state: TargetViewModelState = .network(state: .idle)
   var statePublisher: Published<TargetViewModelState>.Publisher { $state }
   
