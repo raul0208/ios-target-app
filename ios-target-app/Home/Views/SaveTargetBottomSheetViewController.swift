@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Combine
 
 class SaveTargetBottomSheetViewController: UIViewController {
+  
+  private let viewModel: TargetViewModel
   
   private lazy var areaLabel = UILabel(
     text: "home_area_label".localized,
@@ -41,14 +44,52 @@ class SaveTargetBottomSheetViewController: UIViewController {
   
   private lazy var saveButton = UIButton(
     text: "home_save_button_label".localized,
-    target: self
+    target: self,
+    action: #selector(saveTargetButtonTapped)
   )
+  
+  private var cancellables: Set<AnyCancellable> = []
+  
+  init(viewModel: TargetViewModel) {
+    self.viewModel = viewModel
+    super.init(nibName: nil, bundle: nil)
+    
+    setupSubscribers()
+  }
+  
+  @available(*, unavailable)
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     setBottomSheetUIConfigs()
     configureViews()
+  }
+  
+  private func setupSubscribers() {
+    viewModel.statePublisher
+      .sink { [weak self] state in
+        self?.setViewsState(state: state)
+      }.store(in: &cancellables)
+  }
+  
+  private func setViewsState(state: TargetViewModelState) {
+    switch state {
+    case .created:
+      self.dismiss(animated: true, completion: nil)
+    case .network(state: let state):
+      switch state {
+      case .idle: break
+        // TODO: add action
+      case .loading: break
+        // TODO: add action
+      case .error(_): break
+        // TODO: add action
+      }
+    }
   }
   
   private func setBottomSheetUIConfigs() {
@@ -92,7 +133,7 @@ class SaveTargetBottomSheetViewController: UIViewController {
   
   private func setConstraints() {
     NSLayoutConstraint.activate([
-      areaLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      areaLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: UI.BottomSheet.defaultTopAnchor),
       areaLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UI.Defaults.margin),
       areaField.topAnchor.constraint(equalTo: areaLabel.bottomAnchor, constant: UI.TextField.spacing),
       targetTitleLabel.topAnchor.constraint(equalTo: areaField.bottomAnchor, constant: UI.Label.spacing),
@@ -103,5 +144,11 @@ class SaveTargetBottomSheetViewController: UIViewController {
       topicField.topAnchor.constraint(equalTo: topicLabel.bottomAnchor, constant: UI.TextField.spacing),
       saveButton.topAnchor.constraint(equalTo: topicField.bottomAnchor, constant: UI.Defaults.margin),
     ])
+  }
+  
+  // MARK: - Actions
+  @objc
+  func saveTargetButtonTapped() {
+    viewModel.createTarget()
   }
 }

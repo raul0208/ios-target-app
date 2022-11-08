@@ -28,19 +28,3 @@ struct User: Codable {
     case avatar
   }
 }
-
-struct Avatar: Codable {
-  var originalUrl: String?
-  var normalUrl: String?
-  var smallThumbUrl: String?
-  
-  private enum CodingKeys: String, CodingKey {
-    case originalUrl = "original_url"
-    case normalUrl = "normal_url"
-    case smallThumbUrl = "small_thumb_url"
-  }
-}
-
-struct UserResponse: Decodable {
-  var user: User
-}

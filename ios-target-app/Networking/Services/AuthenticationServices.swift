@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 import RSSwiftNetworking
 
 internal class AuthenticationServices {
@@ -15,9 +14,14 @@ internal class AuthenticationServices {
     case userSessionInvalid
   }
   
+  private let sessionManager: SessionManager
   private let apiClient: APIClient
   
-  init(apiClient: APIClient = iOSBaseAPIClient.shared) {
+  init(
+    sessionManager: SessionManager = .shared,
+    apiClient: APIClient = iOSBaseAPIClient.shared
+  ) {
+    self.sessionManager = sessionManager
     self.apiClient = apiClient
   }
   
@@ -40,7 +44,10 @@ internal class AuthenticationServices {
     ) { (result: Result<UserResponse?, Error>, responseHeaders) in
       switch result {
       case .success(let userResponse):
-        if let user = userResponse?.user {
+        if
+          let user = userResponse?.user,
+          self.saveUserSession(userResponse?.user, headers: responseHeaders)
+        {
           completion(.success(user))
         } else {
           completion(.failure(AuthError.userSessionInvalid))
@@ -64,7 +71,7 @@ internal class AuthenticationServices {
     ) { (result: Result<UserResponse?, Error>, responseHeaders) in
       switch result {
       case .success(let userResponse):
-        if userResponse != nil {
+        if self.saveUserSession(userResponse?.user, headers: responseHeaders) {
           completion(.success(()))
         } else {
           completion(.failure(AuthError.userSessionInvalid))
@@ -73,5 +80,15 @@ internal class AuthenticationServices {
         completion(.failure(error))
       }
     }
+  }
+  
+  private func saveUserSession(
+    _ user: User?,
+    headers: [AnyHashable: Any]
+  ) -> Bool {
+    UserDataManager.currentUser = user
+    sessionManager.currentSession = Session(headers: headers)
+    
+    return UserDataManager.currentUser != nil && sessionManager.validSession
   }
 }

@@ -131,13 +131,13 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
 
 extension HomeViewController: BottomSheetDelegate {
   func createTargetButtonTapped() {
-    let saveTargetBottomSheetViewController = SaveTargetBottomSheetViewController()
-    let navigationController = UINavigationController(rootViewController: saveTargetBottomSheetViewController)
-    navigationController.modalPresentationStyle = .pageSheet
+    let saveTargetBottomSheetViewController = SaveTargetBottomSheetViewController(viewModel: TargetViewModel())
+    saveTargetBottomSheetViewController.modalPresentationStyle = .pageSheet
     
-    if let sheet = navigationController.sheetPresentationController {
+    if let sheet = saveTargetBottomSheetViewController.sheetPresentationController {
       sheet.detents = [.medium()]
     }
-    present(navigationController, animated: true, completion: nil)
+    
+    present(saveTargetBottomSheetViewController, animated: true, completion: nil)
   }
 }
